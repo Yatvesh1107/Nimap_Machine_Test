@@ -119,7 +119,7 @@ Create a `.env` file in the root directory and add:
 DB_HOST=127.0.0.1
 DB_USER=root
 DB_PASSWORD=yourpassword
-DB_NAME=machine_test
+DB_NAME=nimap_db
 PORT=3000
 ```
 
@@ -130,9 +130,9 @@ PORT=3000
 Run the following SQL commands in MySQL:
 
 ```
-CREATE DATABASE machine_test;
+CREATE DATABASE nimap_db;
 
-USE machine_test;
+USE nimap_db;
 
 CREATE TABLE categories (
 categoryId INT AUTO_INCREMENT PRIMARY KEY,
@@ -186,4 +186,4 @@ http://localhost:3000
 
 ## Author
 
-Machine Test Submission
+Yatvesh Patil
