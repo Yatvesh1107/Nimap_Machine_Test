@@ -23,13 +23,13 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
-          <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+          <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="/categories" aria-current="page">Category
+              <a class="nav-link fw-semibold" href="/api/categories" aria-current="page">Category
                 <span class="visually-hidden">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="/products">Product</a>
+              <a class="nav-link active fw-semibold" href="/api/products">Product</a>
             </li>
 
           </ul>
@@ -44,7 +44,7 @@
       <div class="row justify-content-center align-items-center g-2">
         <div class="col-6 text-center my-4">
           <h2 class="text-center">Product Details</h2>
-          <form action="/products/add" method="POST">
+          <form action="/api/products" method="POST">
             <div class="form-floating mb-3">
               <input type="text" class="form-control" name="productName" id="formId1" placeholder="" />
               <label for="formId1">Product Name</label>
@@ -113,11 +113,11 @@
                   name=""
                   id=""
                   class="btn btn-primary mx-2"
-                  href="/products/edit/<%= product.productId %>"
+                  href="/api/products/edit/<%= product.productId %>"
                  
                   >Update</a
                 ></td>
-              <td><form action="/products/delete/<%= product.productId %>" method="POST">
+              <td><form action="/api/products/<%= product.productId %>?_method=DELETE" method="POST">
                   <button
                     type="submit"
                     class="btn btn-primary"
@@ -135,9 +135,9 @@
       <div
         class="container my-4 text-center"
       >
-      <a href="/products?page=<%= page-1%>">Prev</a>
+      <a href="/api/products?page=<%= page-1%>">Prev</a>
       <span>Page <%= page %></span>
-      <a href="/products?page=<%=page+1%>">Next</a>
+      <a href="/api/products?page=<%=page+1%>">Next</a>
       </div>
       
       

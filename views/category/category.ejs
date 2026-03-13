@@ -37,15 +37,15 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" href="/categories" aria-current="page"
+                <a class="nav-link active fw-semibold" href="/api/categories" aria-current="page"
                   >Category
                   <span class="visually-hidden">(current)</span></a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/products">Product</a>
+                <a class="nav-link fw-semibold" href="/api/products">Product</a>
               </li>
               
             </ul>
@@ -64,7 +64,7 @@
         >
           <div class="col-6 text-center my-4">
             <h2 class="text-center">Add Category</h2>
-            <form action="/categories/add" method="POST">
+            <form action="/api/categories" method="POST">
             <div class="form-floating mb-3">
               <input
                 type="text"
@@ -116,13 +116,13 @@
                   name=""
                   id=""
                   class="btn btn-primary mx-2"
-                  href="/categories/edit/<%= category.categoryId %>"
+                  href="/api/categories<%= category.categoryId %>"
                  
                   >Update</a
                 >
                 </td>
                 <td>
-                  <form action="/categories/delete/<%= category.categoryId %>" method="POST">
+                  <form action="/api/categories/<%= category.categoryId %>?_method=DELETE" method="POST">
                   <button
                     type="submit"
                     class="btn btn-primary"

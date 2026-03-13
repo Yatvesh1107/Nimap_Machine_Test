@@ -4,12 +4,12 @@ const router = express.Router();
 
 router.get("/",getProducts);
 
-router.post("/add",addProduct);
+router.post("/",addProduct);
 
 router.get("/edit/:id",editProduct);
 
-router.post("/update/:id",updateProduct);
+router.put("/:id",updateProduct);
 
-router.post("/delete/:id",deleteProduct);
+router.delete("/:id",deleteProduct);
 
 module.exports = router;

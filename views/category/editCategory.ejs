@@ -30,8 +30,8 @@
           class="row justify-content-center align-items-center g-2 "
         >
           <div class="col-6 my-4 border rounded">
-            <h2 class="text-center">Updaate Category</h2>
-            <form action="/categories/update/<%= category.categoryId %>" method="POST">
+            <h2 class="text-center">Update Category</h2>
+            <form action="/api/categories/<%= category.categoryId %>?_method=PUT" method="POST">
 
               <div class="form-floating mb-3">
                 <input

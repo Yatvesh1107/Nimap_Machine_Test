@@ -46,7 +46,7 @@ await db.query(
 [productName,categoryId]
 );
 
-res.redirect("/products");
+res.redirect("/api/products");
 } catch (error) {
   console.log(error);
   
@@ -90,7 +90,7 @@ await db.query(
 [productName,categoryId,id]
 );
 
-res.redirect("/products");
+res.redirect("/api/products");
   } catch (error) {
     console.log(error);
     
@@ -106,7 +106,7 @@ await db.query(
 [id]
 );
 
-res.redirect("/products");
+res.redirect("/api/products");
   } catch (error) {
     console.log(error);
     

@@ -17,7 +17,7 @@ exports.getCategories = async (req, res) => {
     }
 };
 
-exports.addCategory = async (req, res) => {
+exports.createCategory = async (req, res) => {
 
     try {
 
@@ -28,7 +28,7 @@ exports.addCategory = async (req, res) => {
             [name]
         );
 
-        res.redirect("/categories");
+        res.redirect("/api/categories");
 
     } catch (err) {
 
@@ -39,7 +39,7 @@ exports.addCategory = async (req, res) => {
 
 };
 
-exports.editCategory = async (req, res) => {
+exports.getCategoryById = async (req, res) => {
   try {
     const id = req.params.id;
 
@@ -68,7 +68,7 @@ await db.query(
 [name,id]
 );
 
-res.redirect("/categories");
+res.redirect("/api/categories");
 } catch (error) {
   console.log(error);
   
@@ -87,7 +87,7 @@ exports.deleteCategory = async (req, res) => {
             [id]
         );
 
-        res.redirect("/categories");
+        res.redirect("/api/categories");
 
     } catch (err) {
 
