@@ -1,70 +1,114 @@
-# Node.js Machine Test – Category & Product Management
+# Nimap Machine Test – Category & Product Management
 
 ## Project Overview
 
-This project is a simple **CRUD application** built using **Node.js, Express, MySQL, and EJS**.
-It manages **Categories and Products**, where each product belongs to a category.
+This project is a **Node.js application using Express, MySQL (RDBMS), and EJS** that implements CRUD operations for **Categories and Products**.
 
-The application demonstrates:
+Each **product belongs to a category**, and the product list supports **server-side pagination** as required in the assignment.
 
-* Category CRUD operations
-* Product CRUD operations
-* Product–Category relationship
-* Server-side pagination
-* MySQL relational database usage
+The application follows **REST API conventions for backend routes** while using **EJS as the view engine for HTML pages**.
 
 ---
 
-## Tech Stack
+# Tech Stack
 
 * **Backend:** Node.js, Express.js
-* **Database:** MySQL
+* **Database:** MySQL (RDBMS)
 * **Template Engine:** EJS
 * **Styling:** Bootstrap
+* **Database Driver:** mysql2
 * **Environment Variables:** dotenv
-* **Database Driver:** mysql2 (Promise Pool)
 
 ---
 
-## Features
+# Features
 
 ### Category Module
 
 * Add Category
-* View Category List
+* View Categories
 * Update Category
 * Delete Category
 
 ### Product Module
 
 * Add Product
-* View Product List
+* View Products
 * Update Product
 * Delete Product
 
-### Product List Includes
+Each Product contains:
 
-* Product ID
-* Product Name
-* Category ID
-* Category Name
-
-### Pagination
-
-Products are fetched from the database using **server-side pagination**.
-
-Example:
-
-* Page size = 10
-* Page 1 → records 1–10
-* Page 2 → records 11–20
+* ProductId
+* ProductName
+* CategoryId
+* CategoryName
 
 ---
 
-## Project Structure
+# Pagination
+
+Product list uses **server-side pagination**.
+
+Example:
+
+Page Size = 10
+
+| Page | Records |
+| ---- | ------- |
+| 1    | 1–10    |
+| 2    | 11–20   |
+| 3    | 21–30   |
+
+SQL query example:
 
 ```
-node-machine-test
+SELECT 
+p.productId,
+p.productName,
+c.categoryName,
+c.categoryId
+FROM products p
+JOIN categories c
+ON p.categoryId = c.categoryId
+LIMIT ? OFFSET ?
+```
+
+---
+
+# REST API Conventions
+
+The backend follows **RESTful routing conventions**.
+
+### Category Routes
+
+| Method | Endpoint        | Description       |
+| ------ | --------------- | ----------------- |
+| GET    | /categories     | Get category page |
+| POST   | /categories     | Create category   |
+| PUT    | /categories/:id | Update category   |
+| DELETE | /categories/:id | Delete category   |
+
+---
+
+### Product Routes
+
+| Method | Endpoint      | Description      |
+| ------ | ------------- | ---------------- |
+| GET    | /products     | Get product page |
+| POST   | /products     | Create product   |
+| PUT    | /products/:id | Update product   |
+| DELETE | /products/:id | Delete product   |
+
+---
+
+# Project Structure
+
+```
+Nimap_Machine_Test
+│
+├── config
+│   └── db.js
 │
 ├── controllers
 │   ├── categoryController.js
@@ -73,9 +117,6 @@ node-machine-test
 ├── routes
 │   ├── categoryRoutes.js
 │   └── productRoutes.js
-│
-├── config
-│   └── db.js
 │
 ├── views
 │   ├── category
@@ -96,43 +137,14 @@ node-machine-test
 
 ---
 
-## Installation & Setup
+# Database Setup
 
-### 1. Clone Repository
-
-```
-git clone https://github.com/Yatvesh1107/machine-test-node.git
-cd machine-test-node
-```
-
-### 2. Install Dependencies
+Run the following SQL commands:
 
 ```
-npm install
-```
+CREATE DATABASE machine_test;
 
-### 3. Create Environment File
-
-Create a `.env` file in the root directory and add:
-
-```
-DB_HOST=127.0.0.1
-DB_USER=root
-DB_PASSWORD=yourpassword
-DB_NAME=nimap_db
-PORT=3000
-```
-
----
-
-## Database Setup
-
-Run the following SQL commands in MySQL:
-
-```
-CREATE DATABASE nimap_db;
-
-USE nimap_db;
+USE machine_test;
 
 CREATE TABLE categories (
 categoryId INT AUTO_INCREMENT PRIMARY KEY,
@@ -149,41 +161,69 @@ FOREIGN KEY (categoryId) REFERENCES categories(categoryId)
 
 ---
 
-## Run the Application
+# Installation
+
+Clone the repository:
+
+```
+git clone https://github.com/Yatvesh1107/Nimap_Machine_Test.git
+```
+
+Go to the project directory:
+
+```
+cd Nimap_Machine_Test
+```
+
+Install dependencies:
+
+```
+npm install
+```
+
+---
+
+# Environment Variables
+
+Create a `.env` file in the root directory.
+
+Example:
+
+```
+DB_HOST=127.0.0.1
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=machine_test
+PORT=3000
+```
+
+---
+
+# Run the Project
+
+Start the server:
 
 ```
 node server.js
 ```
 
-Server will start at:
+Open in browser:
 
 ```
-http://localhost:3000
+http://localhost:3000/categories
 ```
 
 ---
 
-## Application Routes
+# Notes
 
-| Route                  | Description         |
-| ---------------------- | ------------------- |
-| `/categories`          | Category Management |
-| `/products`            | Product Management  |
-| `/categories/add`      | Add Category        |
-| `/products/add`        | Add Product         |
-| `/categories/edit/:id` | Edit Category       |
-| `/products/edit/:id`   | Edit Product        |
+* Uses **MySQL RDBMS as required in the assignment**
+* Pagination implemented **at database level**
+* Backend routes follow **REST conventions**
+* EJS used as **view engine for HTML pages**
 
 ---
 
-## Notes
-
-* Uses **MySQL connection pooling** for efficient database access.
-* Pagination implemented using **LIMIT and OFFSET**.
-* `.env` file is excluded from version control for security.
-
----
-
-## Author
+# Author
 
 Yatvesh Patil
